@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en" dir="ltr" style=color:#424242;> 
+        <link rel="shortcut icon" href="corgi.jpg" type="image/x-icon">
+    <title>Quax</title>
+    <head style="background-color: #424242;">
+            <meta charset="utf-8">
+            <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+            <link rel="stylesheet" href="logedin.css">
+            <script src="common/js/loggedin.js" defer> </script>
+            <script src="setting/setting.js" defer> </script>
+
+             <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="/__/firebase/8.2.5/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.5/firebase-auth.js"></script>
+
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="/__/firebase/8.2.5/firebase-analytics.js"></script>
+
+<!-- Initialize Firebase -->
+<script src="/__/firebase/init.js"></script>
+
+<script src='app.js' defer> </script>
+
+            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    
+    <body style="background-color: #424242;">                
+      <body class="body-css" style="background-color: #424242;">                
+        <nav class="top-right-nav">
+            <div class="drop-btn" onclick="settingdownshow()">
+            Quax<span class="fas fa-caret-down" style="padding-left: 90px;" ></span>
+            </div>
+      <div class="tooltip">
+      </div>
+      <div class="wrapper">
+              <ul class="menu-bar">
+      <li><a href="#">
+                  <div class="icon">
+                    <span class="fas fa-home"></span></div>
+      Home </a></li>
+      <li class="setting-item"><a href="#">
+                  <div class="icon">
+                    <span class="fas fa-cog"></span></div>
+      Settings & privacy <i class="fas fa-angle-right"></i>
+                </a></li>
+      <li class="help-item"><a href="#">
+                  <div class="icon">
+                    <span class="fas fa-question-circle"></span></div>
+      Help & support <i class="fas fa-angle-right"></i>
+                </a></li>
+      <li><a href="#">
+                  <div class="icon">
+                    <span class="fas fa-user"></span></div>
+      About us </a></li>
+      <li><a href="#">
+                  <div class="icon">
+                    <span class="fas fa-comment-alt"></span></div>
+      Feedback </a></li>
+      </ul>
+
+              <ul class="setting-drop">
+      <li class="arrow back-setting-btn"><span class="fas fa-arrow-left"></span>Settings & privacy</li>
+      <li><a href="#">
+                  <div class="icon">
+                    <span class="fas fa-user"></span></div>
+      Personal info </a></li>
+      <li><a href="#">
+                    <div class="icon">
+                      <span class="fas fa-lock"></span></div>
+      Password </a></li>
+      <li><a href="#">
+                    <div class="icon">
+                      <span class="fas fa-address-book"></span></div>
+      Activity log </a></li>
+      <li><a href="#">
+                    <div class="icon">
+                      <span class="fas fa-globe-asia"></span></div>
+      Languages </a></li>
+      <li><a href="#">
+                    <div class="icon">
+                      <span class="fas fa-sign-out-alt"></span></div>
+      Log out </a></li>
+      </ul>
+
+      <ul class="help-drop">
+      <li class="arrow back-help-btn"><span class="fas fa-arrow-left"></span>Help & support</li>
+      <li><a href="#">
+                  <div class="icon">
+                    <span class="fas fa-question-circle"></span></div>
+      Help centre </a></li>
+      <li><a href="#">
+                  <div class="icon">
+                    <span class="fas fa-envelope"></span></div>
+      Support Inbox </a></li>
+      <li><a href="#">
+                  <div class="icon">
+                    <span class="fas fa-comment-alt"></span></div>
+      Send feedback </a></li>
+      <li><a href="#">
+                  <div class="icon">
+                    <span class="fas fa-exclamation-circle"></span></div>
+      Report problem </a></li>
+      </ul>
+      </div>
+      </nav>
+      
+          <script>
+          const drop_btn = document.querySelector(".drop-btn span");
+          const tooltip = document.querySelector(".tooltip");
+          const menu_wrapper = document.querySelector(".wrapper");
+          const menu_bar = document.querySelector(".menu-bar");
+          const setting_drop = document.querySelector(".setting-drop");
+          const help_drop = document.querySelector(".help-drop");
+          const setting_item = document.querySelector(".setting-item");
+          const help_item = document.querySelector(".help-item");
+          const setting_btn = document.querySelector(".back-setting-btn");
+          const help_btn = document.querySelector(".back-help-btn");
+            
+          drop_btn.onclick = (()=>{
+              menu_wrapper.classList.toggle("show");
+              tooltip.classList.toggle("show");
+            });
+            setting_item.onclick = (()=>{
+              menu_bar.style.marginLeft = "-400px";
+              setTimeout(()=>{
+                setting_drop.style.display = "block";
+              }, 100);
+            });
+            help_item.onclick = (()=>{
+              menu_bar.style.marginLeft = "-400px";
+              setTimeout(()=>{
+                help_drop.style.display = "block";
+              }, 100);
+            });
+            setting_btn.onclick = (()=>{
+              menu_bar.style.marginLeft = "0px";
+              setting_drop.style.display = "none";
+            });
+            help_btn.onclick = (()=>{
+              help_drop.style.display = "none";
+              menu_bar.style.marginLeft = "0px";
+            });
+
+            
+
+          </script>
+      
+
+
+
+      <nav class="navbar">
+        <ul class="setting-nav-item">
+          <li class="logo">
+            <a href="#" class="nav-link">
+              <span class="link-text logo-text">QUAX</span>
+              <svg
+                aria-hidden="true"
+                focusable="false"
+                data-prefix="fad"
+                data-icon="angle-double-right"
+                role="img"
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 448 512"
+                class="svg-inline--fa fa-angle-double-right fa-w-14 fa-5x"
+              >
+                <g class="fa-group">
+                  <path
+                    fill="currentColor"
+                    d="M224 273L88.37 409a23.78 23.78 0 0 1-33.8 0L32 386.36a23.94 23.94 0 0 1 0-33.89l96.13-96.37L32 159.73a23.94 23.94 0 0 1 0-33.89l22.44-22.79a23.78 23.78 0 0 1 33.8 0L223.88 239a23.94 23.94 0 0 1 .1 34z"
+                    class="fa-secondary"
+                  ></path>
+                  <path
+                    fill="currentColor"
+                    d="M415.89 273L280.34 409a23.77 23.77 0 0 1-33.79 0L224 386.26a23.94 23.94 0 0 1 0-33.89L320.11 256l-96-96.47a23.94 23.94 0 0 1 0-33.89l22.52-22.59a23.77 23.77 0 0 1 33.79 0L416 239a24 24 0 0 1-.11 34z"
+                    class="fa-primary"
+                  ></path>
+                </g>
+              </svg>
+            </a>
+          </li>
+    
+          <li class="nav-item">
+            <a href="text/text.html" class="nav-link">
+              <img src="https://img.icons8.com/ios-filled/48/000000/sms.png" style="margin-left: 17px;"></svg>
+              <span class="link-text">Text</span>
+            </a>
+          </li>
+    
+          <li class="nav-item">
+            <a href="video/video.html" class="nav-link">
+              <img src="https://img.icons8.com/material-rounded/48/000000/camcorder-pro.png" style="margin-left: 17px;">
+              <span class="link-text">Video</span>
+            </a>
+          </li>
+    
+          <li class="nav-item">
+            <a href="live/live.html" class="nav-link">
+              <img src="https://img.icons8.com/wired/64/000000/live-photos.png" style="margin-left: 9px;">
+              <span class="link-text">Live</span>
+            </a>
+          </li>
+    
+          <li class="nav-item">
+            <a href="feed/feed.html" class="nav-link">
+              <img src="https://img.icons8.com/ios-glyphs/60/000000/activity-feed-2.png" style="margin-left: 10px;">
+              <span class="link-text">Feed</span>
+            </a>
+          </li>
+          
+          <!-- setting button -->
+          
+          <li class="nav-item" >
+            <a href="#" class="nav-link" onclick="myFunction()">
+              <img src="https://img.icons8.com/material-outlined/48/000000/gear--v2.png" style="margin-left: 14px;">
+              <span class="link-text" >setting</span>
+            </a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+
+<style>
+.setting-show.show {
+
+background-color:#3c3f49;
+font-size: 25px;
+box-sizing: border-box;
+display: grid;
+left: 100px;
+
+min-height: 100%;
+min-width: 1024px;
+width: 100%;
+height: auto;
+position: fixed;
+top: 0;
+left: 0;
+
+}
+
+.setting-show {
+display: none;
+}
+</style>
+
+
+<div class="setting-show" id="setting-show">
+<button class="setting-backbutton" onclick="myFunction()">Back</button>
+<div class="setting-helplist" style="text-decoration: none;">
+<nav>
+  <ul>
+    <li>
+      <a href="#" style="text-decoration: none; "> Acount</a>
+    </li>
+    <li>
+      <a href="#" style="text-decoration: none;"> Sercuirty</a>
+    </li>
+    <li>
+      <a href="#" style="text-decoration: none;"> Sercuirty</a>
+    </li>
+    <li>
+      <a href="#" style="text-decoration: none;"> Sercuirty</a>
+    </li>
+    <li>
+      <a href="#" style="text-decoration: none;"> Sercuirty</a>
+    </li>
+  </ul>
+</nav>
+</div>
+
+<!--Theme button-->
+<ul><nav class="navbar-theme">
+    <ul class="navbar-nav-theme">        
+      <li class="nav-item has-dropdown">
+        <a href="#" style="text-decoration: none;">Theme</a>
+        <ul class="dropdown-theme">
+          <li class="dropdown-item">
+            <a id="light" href="#">light</a>
+          </li>
+          <li class="dropdown-item">
+            <a id="dark" href="#">dark</a>
+          </li>
+          <li class="dropdown-item">
+            <a id="solar" href="#">custome</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  </ul>
+
+
+</div>
+
+<script>
+function myFunction() {
+var element = document.getElementById("setting-show");
+element.classList.toggle("show");
+
+var element = document.getElementById("instagramg");
+element.classList.toggle("hide");
+}
+
+</script>
+              
+              
+              <!-- demo -->
+
+              <div class="instagramg" id="instagramg">
+                  <img class="instapics" src="images/slime.gif" wdith="400" height="400"> 
+                  <img class="instapics" src="images/737-300.png" wdith="400" height="400"> 
+                  <img class="instapics" src="images/a380-splash.png" wdith="400" height="400"> 
+                  <img class="instapics" src="images/f16-splash.png" wdith="400" height="400"> 
+                  <img class="instapics" src="images/jaguar-splash.png" wdith="400" height="400">
+                  <img class="instapics" src="images/splash.jpg" wdith="400" height="400">  
+                  <img class="instapics" src="images/splash.png" wdith="400" height="400"> 
+                  <img class="instapics" src="images/sr71-splash.png" wdith="400" height="400"> 
+
+
+
+                  
+              </div>
+
+              <div class="stories">
+                
+              </div>
+
+
+             
+              <section id="whensignedout" > 
+                <button id="signinbtn"> </button>
+              </section>
+
+              <section id="whensignedin" hidden="true">
+                <div id="userdetails"> </div>
+                <button id="signoutbtn">Sign Out</button>
+              </section>
+
+</body>
+</html>
