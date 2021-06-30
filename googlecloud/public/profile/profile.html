@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+  <head lang="en" dir="ltr" > 
+    <link rel="shortcut icon" href="corgi.jpg" type="image/x-icon">
+    <title>Quax</title>
+    <meta charset="utf-8">
+
+    <link type="text/css" rel="stylesheet" href="css/profile.css">
+
+    <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <script src="server.js" defer> </script>
+    <script src="javascript/logedin.js" defer> </script>
+    <script src="javascript/staticscript.js" defer> </script>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </head>
+    
+    <body class="body-css" style="background-color: #424242;" id="thebody">                
+      <button class="top-right-nav" type="button" >
+          <img class="profileimage" src="../images/corgi.jpg" width="28px" height="28px">
+
+          <span class="dropdownusername" name="dropdownusername" id="dropdownusername">Quax</span>
+          
+          <svg role="img" height="16" width="16" class="Svg-ulyrgf-0 dIsYZz triangledropdown" viewBox="0 0 16 16"><path d="M13 10L8 4.206 3 10z"></path></svg>
+
+      <div class="profiledropdown">
+              <ul class="menu-bar">
+      <li><a href="#">
+                  <div class="icon">
+                    <span class="fas fa-home"></span></div>
+      Home </a></li>
+
+      <li><a href="../profile/profile.html">
+        <div class="icon">
+          <span class="fas fa-user"></span></div>
+      Profile </a></li>
+
+      <li class="setting-item"><a href="#">
+                  <div class="icon">
+                    <span class="fas fa-cog"></span></div>
+      Settings<i class="fas fa-angle-right"></i>
+                </a></li>
+      <li class="help-item"><a href="#">
+                  <div class="icon">
+                    <span class="fas fa-question-circle"></span></div>
+      Help & support <i class="fas fa-angle-right"></i>
+                </a></li>
+      
+      <li><a href="#" method="POST" action="/logout">
+                  <div class="icon">
+                    <span class="fas fa-comment-alt"></span></div>
+      Logout </a></li>
+      </ul>
+
+              
+
+      <ul class="help-drop">
+      <li class="arrow back-help-btn"><span class="fas fa-arrow-left"></span>Help & support</li>
+      <li><a href="#">
+                  <div class="icon">
+                    <span class="fas fa-question-circle"></span></div>
+      Help centrer </a></li>
+      <li><a href="#">
+                  <div class="icon">
+                    <span class="fas fa-envelope"></span></div>
+      Support Inbox </a></li>
+      <li><a href="#">
+                  <div class="icon">
+                    <span class="fas fa-comment-alt"></span></div>
+      Send feedback </a></li>
+      <li><a href="#">
+                  <div class="icon">
+                    <span class="fas fa-exclamation-circle"></span></div>
+      Report problem </a></li>
+      </ul>
+      
+      </div>
+      </button>
+      
+      <script>
+          const drop_btn = document.querySelector(".top-right-nav");
+          const profiledropdown = document.querySelector(".profiledropdown");
+
+          const menu_bar = document.querySelector(".menu-bar");
+          const help_drop = document.querySelector(".help-drop");
+          const setting_item = document.querySelector(".setting-item");
+          const help_item = document.querySelector(".help-item");
+          const help_btn = document.querySelector(".back-help-btn");
+            
+          drop_btn.onclick = (()=>{
+            profiledropdown.classList.toggle("show");
+            });
+
+            
+            help_item.onclick = (()=>{
+              menu_bar.style.marginLeft = "-400px";
+              setTimeout(()=>{
+                help_drop.style.display = "block";
+              }, 100);
+            });
+            
+            help_btn.onclick = (()=>{
+              help_drop.style.display = "none";
+              menu_bar.style.marginLeft = "0px";
+            });
+
+          </script>
+      
+<!--Left side nav bar-->
+<nav class="leftnavbar">
+  <ul>
+      <div class="leftnavbarsymbols" > 
+        <img src=../images/homepage.png width="48" height="48" class="serverpicture">
+      </div>
+      
+      <a onclick="document.location.href='/message';"> 
+      <div class="leftnavbarsymbols" > 
+        <img src=../images/messagelogo.png width="48" height="48" class="serverpicture" id="messagekeftbavbarbutton" >
+      </div>
+      </a>
+      
+      <div class="servers">
+        <div>
+          <div draggable="true" class="serverpicturebutton">
+            <img src=../images/f16-splash.png width="48" height="48" class="serverpicture"> 
+          </div>
+
+          <div draggable="true" class="serverpicturebutton">
+            <img src=../images/corgi.jpg width="48" height="48" class="serverpicture"> 
+          </div>
+        </div>
+      </div>
+  </ul>
+
+  <div class="leftbarbuttonpfpclick">
+    <div>
+
+    </div>
+  </div>
+</nav>
+
+<div>
+  <nav class="chatchaneel">
+    <div>
+      <div class="quickacessheadspacearea"></div>
+      <div class="quickacess"> 
+      <a class="channelprofile"> 
+        <div class="avatarpicture" role="img"> 
+          <img src=../images/homepage.png class="avatarpicturecircle" width="48px" hieght="48px" > 
+        </div>
+        <div class="friendsusername">Home</div>
+      </a>
+
+      <a class="channelprofile" onclick="document.location.href='/message';"> 
+        <div class="avatarpicture" role="img"> 
+          <img src=../images/messagelogo.png class="avatarpicturecircle" width="48px" hieght="48px" > 
+        </div>
+        <div class="friendsusername">Message</div>
+      </a>
+      <hr>
+      </div>
+
+      <a class="channelprofile"> 
+        <div class="avatarpicture" role="img"> 
+          <img src=../images/corgi.jpg class="avatarpicturecircle" width="48px" hieght="48px" > 
+        </div>
+        <div class="friendsusername">Quax</div>
+      </a>
+
+      <a class="channelprofile"> 
+        <div class="avatarpicture" role="img"> 
+          <img src=../images/slime.gif class="avatarpicturecircle" width="45px" hieght="45px" > 
+        </div>
+        <div class="friendsusername">Quax</div>
+      </a>
+
+    </div>
+  </nav>
+
+  <div class="maincontent">
+
+  
+</div>
+
+
+<style>
+.setting-show.show {
+
+background-color:#3c3f49;
+font-size: 25px;
+box-sizing: border-box;
+display: grid;
+left: 100px;
+
+min-height: 100%;
+min-width: 1024px;
+width: 100%;
+height: auto;
+position: fixed;
+top: 0;
+left: 0;
+
+}
+
+.setting-show {
+display: none;
+}
+</style>
+
+
+<div class="setting-show" id="setting-show">
+<button class="setting-backbutton" onclick="myFunction()">Back</button>
+<div class="setting-helplist" style="text-decoration: none;">
+<nav>
+  <ul>
+    <li>
+      <a href="#" style="text-decoration: none; "> Acount</a>
+    </li>
+    <li>
+      <a href="#" style="text-decoration: none;"> Sercuirty</a>
+    </li>
+    <li>
+      <a href="#" style="text-decoration: none;"> Sercuirty</a>
+    </li>
+    <li>
+      <a href="#" style="text-decoration: none;"> Sercuirty</a>
+    </li>
+    <li>
+      <a href="#" style="text-decoration: none;"> Sercuirty</a>
+    </li>
+  </ul>
+</nav>
+</div>
+
+
+#theme button
+<ul><nav class="navbar-theme">
+    <ul class="navbar-nav-theme">        
+      <li class="nav-item has-dropdown">
+        <a href="#" style="text-decoration: none;">Theme</a>
+        <ul class="dropdown-theme">
+          <li class="dropdown-item">
+            <a id="light" href="#">light</a>
+          </li>
+          <li class="dropdown-item">
+            <a id="dark" href="#">dark</a>
+          </li>
+          <li class="dropdown-item">
+            <a id="solar" href="#">custome</a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  </ul>
+
+
+</div>
+
+
+
+              
+              <!-- demo -->
+
+<!-- 
+<div class="instagramg" id="instagramg">
+   <img class="instapics" src="images/slime.gif" wdith="400" height="400"> 
+  <img class="instapics" src="images/737-300.png" wdith="400" height="400"> 
+                  <img class="instapics" src="images/a380-splash.png" wdith="400" height="400"> 
+                  <img class="instapics" src="images/f16-splash.png" wdith="400" height="400"> 
+                  <img class="instapics" src="images/jaguar-splash.png" wdith="400" height="400">
+                  <img class="instapics" src="images/splash.jpg" wdith="400" height="400">  
+                  <img class="instapics" src="images/splash.png" wdith="400" height="400"> 
+                  <img class="instapics" src="images/sr71-splash.png" wdith="400" height="400"> 
+
+
+
+                  
+              </div>
+
+              <div class="stories">
+                
+              </div>
+-->
+</body>
+</html>

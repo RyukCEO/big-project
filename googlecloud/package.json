@@ -1,0 +1,40 @@
+{
+  "name": "googlecloud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "body-parser": "^1.19.0",
+    "cassandra-driver": "^4.6.3",
+    "cookie": "^0.4.1",
+    "cookie-parser": "^1.4.5",
+    "cookiejar": "^2.1.2",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-mysql-session": "^2.1.6",
+    "express-session": "^1.17.1",
+    "faye-websocket": "^0.11.3",
+    "fs-extra": "^10.0.0",
+    "js-tokens": "^7.0.0",
+    "mustache": "^4.2.0",
+    "mysql": "^2.18.1",
+    "node-fetch": "^2.6.1",
+    "node-forge": "^0.10.0",
+    "nodemon": "^2.0.7",
+    "promise": "^8.1.0",
+    "request": "^2.88.2",
+    "to-arraybuffer": "^1.0.1",
+    "websocket-driver": "^0.7.4",
+    "websocket-extensions": "^0.1.4",
+    "ws": "^7.4.6"
+  },
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
