@@ -22,6 +22,10 @@ const fetch = require('node-fetch');
 const cassandra = require('cassandra-driver');
 var cookieParser = require('cookie-parser')
 const dotenv = require('dotenv')
+var Mustache = require('mustache');
+var mustacheExpress = require('mustache-express');
+
+
 
 
 
@@ -38,7 +42,9 @@ const app = express()
 var server = http.createServer();
 */
 app.use(express.json());
-app.set('view engine', 'ejs')
+app.engine('html', mustacheExpress());
+app.set('view engine', 'html');
+app.set('views', '/public' + __dirname  );
 app.use(cookieParser());
 
 
@@ -137,7 +143,11 @@ app.get('/logedin', (req,res) => {
       err.statusCode = 401;
       res.redirect('/login')
   } else {
-    res.sendFile(__dirname + '/public/logedin/logedin.html')
+    /*
+    res.sendFile(__dirname + '/public/logedin/logedin.html'), 
+    {username:'Sus'}
+    */
+   res.render("logedin/logedin",{username:"sus"}) 
   };
 
 console.log(req.sessionID)

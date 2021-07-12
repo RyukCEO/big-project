@@ -4,11 +4,90 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="cf87579d-52d0-470d-8e9a-8c2313bf305f" name="Default Changelist" comment="" />
+    <list default="true" id="cf87579d-52d0-470d-8e9a-8c2313bf305f" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/.firebaserc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/cssfiles/404.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/cssfiles/css/logedin.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/cssfiles/css/loggedin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/cssfiles/css/login2.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/cssfiles/images/737-300.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/cssfiles/images/a380-splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/cssfiles/images/corgi.jpg - Shortcut.lnk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/cssfiles/images/corgi2.lnk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/cssfiles/images/f16-splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/cssfiles/images/jaguar-splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/cssfiles/images/slime.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/cssfiles/images/splash.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/cssfiles/images/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/cssfiles/images/sr71-splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/cssfiles/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/firebase.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/logedin/images/737-300.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/logedin/images/a380-splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/logedin/images/corgi.jpg - Shortcut.lnk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/logedin/images/corgi2.lnk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/logedin/images/f16-splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/logedin/images/jaguar-splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/logedin/images/slime.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/logedin/images/splash.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/logedin/images/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/logedin/images/sr71-splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/logedin/logedin.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/logedin/loggedin.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/logedin/loggedin.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/logedin/setting/setting.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/logedin/setting/setting.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/logedin/setting/setting.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/images/737-300.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/images/a380-splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/images/corgi.jpg - Shortcut.lnk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/images/corgi2.lnk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/images/f16-splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/images/jaguar-splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/images/slime.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/images/splash.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/images/splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/images/sr71-splash.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/logedin.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/login2.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/logins/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/logins/login.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/logins/login2.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/loginsystem.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/mainpage.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/mainpage.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/mainpage.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/signup.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/signup.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/signup/signup.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/signup/signup.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/webcam.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/webcam.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/public/webcam.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/server.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/setting/setting.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/firebse testing/signup/signup.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/googlecloud/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/googlecloud/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/googlecloud/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/googlecloud/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/googlecloud/public/logedin/logedin.html" beforeDir="false" afterPath="$PROJECT_DIR$/googlecloud/public/logedin/logedin.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/googlecloud/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/googlecloud/server.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/live/live.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/setting/setting.js" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1qBZ07eEkWLT0sHCUDPQqV3yj0o" />
   <component name="ProjectViewState">
@@ -19,8 +98,11 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/quaxapp-andriod" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -33,5 +115,11 @@
       <updated>1616554717508</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="740" y="275" key="FileChooserDialogImpl" timestamp="1625210626708">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="740" y="275" key="FileChooserDialogImpl/0.0.1920.1040/-1920.0.1920.1040@0.0.1920.1040" timestamp="1625210626708" />
   </component>
 </project>
