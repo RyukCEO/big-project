@@ -8,6 +8,8 @@ import android.telecom.Call;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,8 +22,13 @@ public class loginpage extends AppCompatActivity {
 
     EditText email,password;
     Button loginbutton;
+    CheckBox remember;
 
     boolean isAuth = false;
+    private Object CheckBox;
+
+    sharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+    string checkbox = preferennces.getString("remember", "");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +37,7 @@ public class loginpage extends AppCompatActivity {
 
         email = findViewById(R.id.editTextTextEmailAddress);
         password = findViewById(R.id.editTextTextPassword);
-
+        CheckBox = findViewById(R.id.remembermecheckbox);
         loginbutton = findViewById(R.id.userloginsubmitinformation);
         loginbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,6 +56,26 @@ public class loginpage extends AppCompatActivity {
                     Intent MainActivity = new Intent(loginpage.this, MainActivity.class);
                     startActivity(MainActivity);
                 }
+
+
+
+                remember.setOnCheckedChangeListener(new CompoundButton.setOnCheckedChangeListener(){
+                    @override
+                    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                        if(CompoundButton.isChecked()){
+                            sharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                            sharedPreferences.EDITOR editor=preferences.edit();
+                            editor.putString("remember", "true");
+                            editor.apply();
+                        }else if (!CompoundButton.isChecked()){
+                            sharedPreferences preferences = getSharedPreferences("checkbox", MODE_PRIVATE);
+                            sharedPreferences.EDITOR editor=preferences.edit();
+                            editor.putString("remember", "false");
+                            editor.apply();
+                        }
+                    }
+                });
+
 
 
             }
