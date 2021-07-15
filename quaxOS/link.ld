@@ -6,7 +6,12 @@ INPUT
 (
     ExtendedProgram.0
     kernal.o
+    IDT.o
+    IO.o
     Binaries.o
+    TextPrint.o
+    keyboard.o
+    memorymap.o
 )
 
 OUTPUT_FORMAT(
