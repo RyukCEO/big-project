@@ -12,6 +12,7 @@ INPUT
     TextPrint.o
     keyboard.o
     memorymap.o
+    heap.o
 )
 
 OUTPUT_FORMAT(
