@@ -1,11 +1,12 @@
 
 Detectcpuid:
+
     pushfd
     pop eax
 
     mov ecx, eax
 
-    cor eax, 1 << 21
+    xor eax, 1 << 21
 
     push eax
     popfd
@@ -13,7 +14,7 @@ Detectcpuid:
     popfd
     pop eax
 
-    pushecx
+    push ecx
     popfd
 
     xor eax,ecx
@@ -24,10 +25,10 @@ DetectLongMode:
     mov eax, 0x80000001
     cpuid
     test edx, 1 << 29
-    jz
+    jz  NoLongMode
     ret
 
-NoLongModeL
+NoLongMode:
     hlt ; no long mode support
 NOCPUID:
     hlt ; no cpu id support.

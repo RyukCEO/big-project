@@ -1,7 +1,7 @@
-gdt_nulldesc:
-     dd0
-     dd0
 
+gdt_nulldesc:
+     dd 0
+     dd 0
 gdt_codedesc:
     dw 0xFFFF           ; Limit
     dw 0x0000           ; base (low)
@@ -9,7 +9,6 @@ gdt_codedesc:
     db 10011010b        ; flags
     db 11001111b        ; flags + upper Limit
     db 0x00             ; base (high)
-
 gdt_datadesc:
     dw 0xFFFF
     dw 0x0000
@@ -17,7 +16,6 @@ gdt_datadesc:
     db 10011010b
     db 11001111b
     db 0x00
-
 gdt_end:
 
 gdt_descriptor:
@@ -25,7 +23,7 @@ gdt_descriptor:
         dw gdt_end - gdt_nulldesc - 1
         dq gdt_nulldesc
 
-codeseg equ gdt_codedest - gdt_nulldesc
+codeseg equ gdt_codedesc - gdt_nulldesc
 dataseg equ gdt_datadesc - gdt_nulldesc
 [bits 32]
 

@@ -2,10 +2,11 @@
 jmp EnterProtectedMode
 
 %include "gdt.asm"
-%include "print.asm"
+%include "printstrings.asm"
 %include "detectmemory.asm"
 
 EnterProtectedMode:
+
     call DetectMemory
     call EnableA20
     cli
@@ -54,6 +55,7 @@ Start64Bit:
 
     call ActivateSSE
     call _start
+
     jmp $
 
 ActivateSSE:
@@ -65,6 +67,7 @@ ActivateSSE:
     mov rax, cr4
     or ax, 0b1100000000
     mov cr4, rax
+
     ret
 
 times 2048-($-$$) db 0

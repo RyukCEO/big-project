@@ -24,6 +24,11 @@ var cookieParser = require('cookie-parser')
 const dotenv = require('dotenv')
 var Mustache = require('mustache');
 var mustacheExpress = require('mustache-express');
+const { MongoClient } = require('mongodb')
+const MongoStore = require('connect-mongo');
+
+
+
 
 
 
@@ -47,9 +52,16 @@ app.set('view engine', 'html');
 app.set('views', '/public' + __dirname  );
 app.use(cookieParser());
 
+const uri = "mongodb+srv://quax:1234@cluster0.id76b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
 
+client.connect(err => {
+  const collection = client.db("test").collection("devices");
+  // perform actions on the collection object
+  client.close();
+});
 
-
+/* mysql server is off
 //mysql session database
 var sessionoptions = {
 	host: '35.236.60.163',
@@ -77,7 +89,15 @@ var connection = mysql.createConnection({
     password : '1234',
     database : 'Users'
 });
+*/
 
+app.use(session({
+  secret: 'foo',
+  store: MongoStore.create({
+    mongoUrl: 'mongodb+srv://quax:1234@cluster0.id76b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+
+  })
+}));
 
 
 app.use(express.static(__dirname + '/public'));
@@ -86,7 +106,7 @@ app.use(express.json())
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
+/*
 app.use(session({
     resave: false,
     saveUninitialized: true,
@@ -100,6 +120,7 @@ app.use(session({
         httpOnly: true
     }
 }))
+*/
 
 //remove in production 
 app.use((req, res, next) => {
@@ -147,7 +168,7 @@ app.get('/logedin', (req,res) => {
     res.sendFile(__dirname + '/public/logedin/logedin.html'), 
     {username:'Sus'}
     */
-   res.render("logedin/logedin",{username:"sus"}) 
+   res.render("logedin",{username:"sus"}) 
   };
 
 console.log(req.sessionID)
@@ -198,7 +219,7 @@ app.get("/login", (req,res) => {
 
     console.log(req.sessionID)
 
-    res.sendFile(__dirname + '/public/login/login.html')
+    res.render("login") 
 
 });
 
