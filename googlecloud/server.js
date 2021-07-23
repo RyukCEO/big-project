@@ -24,14 +24,48 @@ var cookieParser = require('cookie-parser')
 const dotenv = require('dotenv')
 var Mustache = require('mustache');
 var mustacheExpress = require('mustache-express');
-const { MongoClient } = require('mongodb')
+const { MongoClient } = require('mongodb');
 const MongoStore = require('connect-mongo');
+const mongoose = require('mongoose');
+
+const app = express()
 
 
 
+//mongoose mongodb database connection
+mongoose.connect('mongodb+srv://quax:1234@cluster0.id76b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: true,
+  useCreateIndex: true
+})
+  .then((result) => console.log('connected to db'))
+  .catch((err) => console.log(err))
 
 
+const schema = mongoose.Schema;
 
+const UserSchema = new schema({
+  username: {
+    type: String,
+    required: false
+  },
+  email: {
+    type: String,
+    required: false
+  },
+  password: {
+    type: String,
+    required: false
+  },
+  phonenumber: {
+    type: String,
+    required: false
+  }
+});
+
+const User = mongoose.model('User', UserSchema);
+module.exports = User;
 
 
 
@@ -39,7 +73,6 @@ websocket = require('websocket-driver');
 
 
 
-const app = express()
 
 //dotenv.config({ path: "./"})
 
@@ -49,7 +82,7 @@ var server = http.createServer();
 app.use(express.json());
 app.engine('html', mustacheExpress());
 app.set('view engine', 'html');
-app.set('views', '/public' + __dirname  );
+app.set('views', __dirname + '/public');
 app.use(cookieParser());
 
 const uri = "mongodb+srv://quax:1234@cluster0.id76b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
@@ -61,58 +94,20 @@ client.connect(err => {
   client.close();
 });
 
-/* mysql server is off
-//mysql session database
-var sessionoptions = {
-	host: '35.236.60.163',
-	port: 3306,
-	user: 'guest',
-	password: '1234',
-	database: 'Users',
-  schema: {
-		tableName: 'sessions',
-		columnNames: {
-			session_id: 'session_id',
-			expires: 'expires',
-			data: 'data'
-		}
-	}
-
-};
-
-var sessionStore = new MySQLStore(sessionoptions);
-
-//connecting to database
-var connection = mysql.createConnection({
-    host     : '35.236.60.163',
-    user     : 'guest',
-    password : '1234',
-    database : 'Users'
-});
-*/
-
-app.use(session({
-  secret: 'foo',
-  store: MongoStore.create({
-    mongoUrl: 'mongodb+srv://quax:1234@cluster0.id76b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
-
-  })
-}));
-
-
 app.use(express.static(__dirname + '/public'));
 
 app.use(express.json())
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-/*
+
 app.use(session({
     resave: false,
     saveUninitialized: true,
     name: 'sid',
     secret: 'some secret',
-    store: sessionStore,
+    store: MongoStore.create({ 
+      mongoUrl: 'mongodb+srv://quax:1234@sessions.mnty4.mongodb.net/myFirstDatabase' }),
     cookie: {
         maxage: 99 * 99,
         samesite: false,
@@ -120,7 +115,7 @@ app.use(session({
         httpOnly: true
     }
 }))
-*/
+
 
 //remove in production 
 app.use((req, res, next) => {
@@ -227,8 +222,7 @@ app.get("/login", (req,res) => {
 
 app.get("/signup", (req,res) => {
 
-    res.sendFile(__dirname + '/public/signup/signup.html')
-
+  res.render("signup") 
 });
 
 app.get("/logout", (req, res) => {
@@ -265,20 +259,20 @@ const {password, confirmpassword} = req.body
     
   if (password === confirmpassword) {
     try {
-    const email  = req.body.username;
+    const email  = req.body.email;
     const password = req.body.password;
     const phonenumber = req.body.phonenumber;
     const username = req.body.username;
 
 
     const saltRounds = 10;
-    bcrypt.hash(password, saltRounds, (err, hash) => {
+    bcrypt.hash(password, saltRounds, function(err, hash) {
     console.log(hash)
       if (err) {
         console.log(err);
       } 
     });
-        
+    user.password = hash
     //generate id for user
     const user_identity_id = crypto.randomBytes(16).toString("hex");
     console.log(user_identity_id); 
@@ -291,18 +285,25 @@ const {password, confirmpassword} = req.body
     let privateKey = forge.pki.privateKeyToPem(keypair.privateKey);
     let publicKey = forge.pki.publicKeyToPem(keypair.publicKey);
 
-    console.log(keypair)
-    console.log(privateKey)
-    console.log(publicKey)
+    //console.log(privateKey)
+    //console.log(publicKey)
     }); 
 
-    connection.query(
-    "INSERT INTO Usersinformation (email, userspassword,phoneusernumber,username, userid) VALUES (?,?,?,?,?)",
-    email, hash, phonenumber, username, user_identity_id,
-    (err, result) => {
-    console.log(err);
-      }
-    );
+    //fix hashed password not querying
+    const usersignup = new User ({
+      username: username,
+      email: email,
+      password: hash,
+      phonenumber: phonenumber
+    })
+    usersignup.save()
+      .then((result) => {
+        res.send(result)
+      })
+      .catch((err) => {
+        console.log(err)
+      });
+    
 
     res.status(201).send()
     req.session.userId = user.userId
@@ -316,18 +317,21 @@ const {password, confirmpassword} = req.body
 
     
 app.post('/login', (req,res) => {
+
+  const email  = req.body.email;
+  const password = req.body.password;
   const user = {
     email: req.body.email,
     password: req.body.password
   }
 
+  const userlogin = new User ({
+    email: email,
+    password: password
+  })
+
   try {
-    connection.query("SELECT * FROM Usersinformation WHERE email = ?;",
-    user.email,
-    (err, result) => {
-  if (err) {
-    res.send({ err: err });
-}
+  userlogin.findone({email: req.body.email}, function(err, user) {
         
   if (result.length > 0) {
    bcrypt.compare(user.password, result[0].userspassword, (error, response) => {
@@ -349,7 +353,7 @@ app.post('/login', (req,res) => {
    } catch {
    res.status(500).send()
     }
-    
+}
  /*   
 
     if (password, email === null) {
@@ -357,8 +361,7 @@ app.post('/login', (req,res) => {
     }
 
 */
-    
-})
+)
  
 //message protocal
 
