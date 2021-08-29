@@ -30,7 +30,10 @@ const mongoose = require('mongoose');
 
 const app = express()
 
+const authroutes = require('./api/auth');
 
+app.use('/api/user', authroutes)
+app.use('/login', authroutes)  
 
 //mongoose mongodb database connection
 mongoose.connect('mongodb+srv://quax:1234@cluster0.id76b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
@@ -44,6 +47,7 @@ mongoose.connect('mongodb+srv://quax:1234@cluster0.id76b.mongodb.net/myFirstData
 
 
 const schema = mongoose.Schema;
+mongoose.Promise = global.Promise;
 
 const UserSchema = new schema({
   username: {
@@ -64,13 +68,19 @@ const UserSchema = new schema({
   }
 });
 
+UserSchema.methods.comparePassword = function(candidatePassword, cb) {
+  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
+      if (err) return cb(err);
+      cb(null, isMatch);
+  });
+};
+
 const User = mongoose.model('User', UserSchema);
 module.exports = User;
 
 
 
 websocket = require('websocket-driver');
-
 
 
 
@@ -149,6 +159,54 @@ app.get("/profile/:userid",function(req,res,next){
 });
 
 
+
+
+app.post('/login', (req, res, next) => {
+
+  const email  = req.body.email;
+  const password = req.body.password;
+  const user = {
+    email: req.body.email,
+    password: req.body.password
+  }
+
+    User.find({ email: user.email }).exec()
+    .then(user => {
+      if (user.length < 1) {
+        return res.status(401).json({
+          message: "Auth failed"
+        });
+      }
+    bcrypt.compare(password, user[0].password, (err, result) => {
+    if (err) {
+      return res.status(401).json({
+        message: "Auth failed"
+      });
+  }
+  if (result) {
+    console.log(req.session);
+    req.session.user = user
+                                 
+    res.redirect('/logedin')
+    return res.status(200)
+  }
+  res.status(401).json({
+    message: "Auth failed"
+  });
+});
+})
+.catch(err => {
+  console.log(err);
+  res.status(500).json({
+    error: err
+    });
+  });
+});
+
+
+
+
+
 app.get('/setting', (req,res) => {
   res.sendFile(__dirname + '/public/setting/setting.html')
 })
@@ -221,7 +279,6 @@ app.get("/login", (req,res) => {
 
 
 app.get("/signup", (req,res) => {
-
   res.render("signup") 
 });
 
@@ -254,114 +311,7 @@ app.post('/logout', (req,res)  => {
 
 
 
-app.post("/signup", (req,res) => {
-const {password, confirmpassword} = req.body
-    
-  if (password === confirmpassword) {
-    try {
-    const email  = req.body.email;
-    const password = req.body.password;
-    const phonenumber = req.body.phonenumber;
-    const username = req.body.username;
 
-
-    const saltRounds = 10;
-    bcrypt.hash(password, saltRounds, function(err, hash) {
-    console.log(hash)
-      if (err) {
-        console.log(err);
-      } 
-    });
-    user.password = hash
-    //generate id for user
-    const user_identity_id = crypto.randomBytes(16).toString("hex");
-    console.log(user_identity_id); 
-
-    //generates private and public key
-    const pki = require('node-forge').pki
-    var rsa = forge.pki.rsa;
-    rsa.generateKeyPair({bits: 2048, workers: 1}, function(err, keypair) {
-    // keypair.privateKey, keypair.publicKey
-    let privateKey = forge.pki.privateKeyToPem(keypair.privateKey);
-    let publicKey = forge.pki.publicKeyToPem(keypair.publicKey);
-
-    //console.log(privateKey)
-    //console.log(publicKey)
-    }); 
-
-    //fix hashed password not querying
-    const usersignup = new User ({
-      username: username,
-      email: email,
-      password: hash,
-      phonenumber: phonenumber
-    })
-    usersignup.save()
-      .then((result) => {
-        res.send(result)
-      })
-      .catch((err) => {
-        console.log(err)
-      });
-    
-
-    res.status(201).send()
-    req.session.userId = user.userId
-    return res.redirect('/logedin')
-    } catch {
-      res.status(500).send()
-    }
- }
-})
-
-
-    
-app.post('/login', (req,res) => {
-
-  const email  = req.body.email;
-  const password = req.body.password;
-  const user = {
-    email: req.body.email,
-    password: req.body.password
-  }
-
-  const userlogin = new User ({
-    email: email,
-    password: password
-  })
-
-  try {
-  userlogin.findone({email: req.body.email}, function(err, user) {
-        
-  if (result.length > 0) {
-   bcrypt.compare(user.password, result[0].userspassword, (error, response) => {
-  if (response) {
-   console.log(req.session);
-      req.session.user = user
-                                 
-      res.redirect('/logedin')
-
- } else {
-     console.log("Wrong username/password combination!");
-}
-});
-    } else {
-      console.log("User doesn't exist");
-         }
-   }
- );
-   } catch {
-   res.status(500).send()
-    }
-}
- /*   
-
-    if (password, email === null) {
-        return res.status(400).send('provide email or password')
-    }
-
-*/
-)
  
 //message protocal
 
@@ -493,6 +443,7 @@ function forwardMessageToClient(req, res) {
 
 
 
+module.exports = app;
 
 
 const port = process.env.port || 8080;
