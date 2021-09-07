@@ -1,16 +1,18 @@
+const router = require("express").Router();
 const express = require("express");
-const router = require('express').Router();
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
+var bodyParser = require('body-parser');
+var Mustache = require('mustache');
+var mustacheExpress = require('mustache-express');
+const crypto = require('crypto');
+var forge = require('node-forge');
 
 
+const User = require("../models/User")
 
 
-  
-
-
-
-router.post("/signup", (req,res,next) => {
+router.post("/signup", (req, res, next) => {
     const {password, confirmpassword} = req.body
         
     const email  = req.body.email;
@@ -60,7 +62,7 @@ router.post("/signup", (req,res,next) => {
 });
 
 
-router.post('/login', (req, res, next) => {
+router.post('/login', async (req, res, next) => {
 
   const email  = req.body.email;
   const password = req.body.password;

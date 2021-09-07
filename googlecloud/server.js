@@ -28,12 +28,13 @@ const { MongoClient } = require('mongodb');
 const MongoStore = require('connect-mongo');
 const mongoose = require('mongoose');
 
+const authroutes = require('./api/auth');
+const userroutes = require('./api/user');
+const mediapostroutes = require('./api/mediapost');
+
 const app = express()
 
-const authroutes = require('./api/auth');
 
-app.use('/api/user', authroutes)
-app.use('/login', authroutes)  
 
 //mongoose mongodb database connection
 mongoose.connect('mongodb+srv://quax:1234@cluster0.id76b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
@@ -42,41 +43,12 @@ mongoose.connect('mongodb+srv://quax:1234@cluster0.id76b.mongodb.net/myFirstData
   useFindAndModify: true,
   useCreateIndex: true
 })
-  .then((result) => console.log('connected to db'))
-  .catch((err) => console.log(err))
+.then((result) => console.log('connected to db'))
+.catch((err) => console.log(err))
 
 
-const schema = mongoose.Schema;
-mongoose.Promise = global.Promise;
 
-const UserSchema = new schema({
-  username: {
-    type: String,
-    required: false
-  },
-  email: {
-    type: String,
-    required: false
-  },
-  password: {
-    type: String,
-    required: false
-  },
-  phonenumber: {
-    type: String,
-    required: false
-  }
-});
 
-UserSchema.methods.comparePassword = function(candidatePassword, cb) {
-  bcrypt.compare(candidatePassword, this.password, function(err, isMatch) {
-      if (err) return cb(err);
-      cb(null, isMatch);
-  });
-};
-
-const User = mongoose.model('User', UserSchema);
-module.exports = User;
 
 
 
@@ -161,47 +133,9 @@ app.get("/profile/:userid",function(req,res,next){
 
 
 
-app.post('/login', (req, res, next) => {
-
-  const email  = req.body.email;
-  const password = req.body.password;
-  const user = {
-    email: req.body.email,
-    password: req.body.password
-  }
-
-    User.find({ email: user.email }).exec()
-    .then(user => {
-      if (user.length < 1) {
-        return res.status(401).json({
-          message: "Auth failed"
-        });
-      }
-    bcrypt.compare(password, user[0].password, (err, result) => {
-    if (err) {
-      return res.status(401).json({
-        message: "Auth failed"
-      });
-  }
-  if (result) {
-    console.log(req.session);
-    req.session.user = user
-                                 
-    res.redirect('/logedin')
-    return res.status(200)
-  }
-  res.status(401).json({
-    message: "Auth failed"
-  });
-});
-})
-.catch(err => {
-  console.log(err);
-  res.status(500).json({
-    error: err
-    });
-  });
-});
+app.use('/api/auth', authroutes)
+app.use('/api/user', userroutes)
+app.use('/api/mediapost', mediapostroutes)
 
 
 
@@ -217,10 +151,6 @@ app.get('/logedin', (req,res) => {
       err.statusCode = 401;
       res.redirect('/login')
   } else {
-    /*
-    res.sendFile(__dirname + '/public/logedin/logedin.html'), 
-    {username:'Sus'}
-    */
    res.render("logedin",{username:"sus"}) 
   };
 
@@ -242,6 +172,18 @@ res.render('index', { dropdownusername: req.user.username });
 */
 });
 
+app.put("/:id/follow", async (req,res) => {
+  if(req.body.userId !== req.params.id) {
+    try {
+      const user = await User.findById(req.params.id);
+      const currentuser = await User.findById(req.params.Userid);
+    } catch (err) {
+      res.status(500).json(err);
+    }
+  }else{
+    res.status(403).json("don't follow  yourself")
+  }
+})
 
 app.get("/group/:groupid", (req,res) => {
 
