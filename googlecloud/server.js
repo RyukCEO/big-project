@@ -31,9 +31,9 @@ const mongoose = require('mongoose');
 const authroutes = require('./api/auth');
 const userroutes = require('./api/user');
 const mediapostroutes = require('./api/mediapost');
-
+const { response } = require('express');
+const User = require('./models/User');
 const app = express()
-
 
 
 //mongoose mongodb database connection
@@ -47,25 +47,21 @@ mongoose.connect('mongodb+srv://quax:1234@cluster0.id76b.mongodb.net/myFirstData
 .catch((err) => console.log(err))
 
 
-
-
-
-
-
 websocket = require('websocket-driver');
 
 
-
 //dotenv.config({ path: "./"})
-
 /*http = require('http');
 var server = http.createServer();
 */
+
+
 app.use(express.json());
 app.engine('html', mustacheExpress());
 app.set('view engine', 'html');
 app.set('views', __dirname + '/public');
 app.use(cookieParser());
+
 
 const uri = "mongodb+srv://quax:1234@cluster0.id76b.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
@@ -131,13 +127,9 @@ app.get("/profile/:userid",function(req,res,next){
 });
 
 
-
-
 app.use('/api/auth', authroutes)
 app.use('/api/user', userroutes)
 app.use('/api/mediapost', mediapostroutes)
-
-
 
 
 
@@ -151,39 +143,15 @@ app.get('/logedin', (req,res) => {
       err.statusCode = 401;
       res.redirect('/login')
   } else {
-   res.render("logedin",{username:"sus"}) 
+   res.render("logedin",{username:User.username}) 
   };
 
 console.log(req.sessionID)
   
-//const username = "req.session.email"
-//document.getElementById('dropdownusername').innerHTML = username.value;
 
-/*
-res.render('index', { dropdownusername: req.user.username });
-  const userspost = [{
-    comment: "",
-    date: new Date()
-  }]
-  /*
-  const username = [{
-    username: "poop"
-  }]
-*/
+
 });
 
-app.put("/:id/follow", async (req,res) => {
-  if(req.body.userId !== req.params.id) {
-    try {
-      const user = await User.findById(req.params.id);
-      const currentuser = await User.findById(req.params.Userid);
-    } catch (err) {
-      res.status(500).json(err);
-    }
-  }else{
-    res.status(403).json("don't follow  yourself")
-  }
-})
 
 app.get("/group/:groupid", (req,res) => {
 
@@ -202,27 +170,23 @@ app.get("/message/:userid", (req,res) => {
 });
 
 
-app.get("/login", (req,res) => {
+app.get("/login", (req, res) => {
 /*
   if (req.session || req.session.cookie) {
     res.redirect('/logedin')
   } else {
     res.sendFile(__dirname + '/public/login/login.html')
 }
-*/    
-    
-
+*/  
     console.log(req.sessionID)
-
     res.render("login") 
-
 });
-
 
 
 app.get("/signup", (req,res) => {
   res.render("signup") 
 });
+
 
 app.get("/logout", (req, res) => {
   if (req.session.user && req.cookies.sid) {
@@ -232,8 +196,6 @@ app.get("/logout", (req, res) => {
     res.redirect("/login");
   }
 });
-
-
 
 
 app.post('/logout', (req,res)  => {
@@ -252,9 +214,6 @@ app.post('/logout', (req,res)  => {
 })
 
 
-
-
- 
 //message protocal
 
 /*
@@ -303,9 +262,7 @@ request.body = {
 		},
 	]
 }
-*/
 
-/*
 var storageMap = {};
 var messageStorageMap = {};
 
@@ -381,12 +338,7 @@ function forwardMessageToClient(req, res) {
 */
 
 
-
-
-
-
 module.exports = app;
-
 
 const port = process.env.port || 8080;
 app.listen(port);
